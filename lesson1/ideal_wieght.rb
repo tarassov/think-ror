@@ -4,7 +4,7 @@ def ask question, type
     res = gets.chomp
 
     if type == String
-       return res         
+       return res.strip        
     else 
        num = res.to_i
        if num <=0 
