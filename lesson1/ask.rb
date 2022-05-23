@@ -12,7 +12,7 @@ def ask question, type, negative = false
     else 
        if !numeric(res) || ( res.to_f <=0 && !negative) 
           puts "Неверный ввод"
-          return  ask question, type
+          return  ask question, type, negative
        else
           return  res.to_f   
        end               
