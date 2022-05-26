@@ -23,7 +23,7 @@ puts result
 
 result2 = []
 #это вариант, если количество чисел фибоначчи должно быть 100
-(0..100).each do |j|
+(0..99).each do |j|
     result2 << get_fib(result2)
 end
 
