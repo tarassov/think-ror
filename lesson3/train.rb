@@ -10,7 +10,7 @@ class Train
     attr_reader :route
     attr_reader :current_station    
 
-    def initialize number, type, wagon_count
+    def initialize (number, type, wagon_count)
         @number  = number
         @wagon_count = wagon_count
         @speed = 0
@@ -48,33 +48,33 @@ class Train
     def  route= (route)
         #delete from current route and stations
         if @route
-            @current_station.leave self
+            @current_station.leave(self)
         end
         @route = route
         if @route        
             @current_station =  @route.stations.first
-            @current_station.receive self
+            @current_station.receive(self)
         end    
     end
 
     def move
         raise "No route" until @route
-        next_station = @route.get_next @current_station
+        next_station = @route.get_next(@current_station)
         if next_station
-             @current_station.leave self
-             next_station.receive self
+             @current_station.leave(self)
+             next_station.receive(self)
              @current_station = next_station
         end
     end
 
     def next_station
         nil until @route
-        @route.get_next @current_station
+        @route.get_next(@current_station)
     end
 
     def prev_station
         nil until @route
-        @route.get_previous @current_station
+        @route.get_previous(@current_station)
     end
 
 end

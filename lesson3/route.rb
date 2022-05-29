@@ -3,7 +3,8 @@ require_relative 'train.rb'
 
 class Route
     attr_reader :stations
-    def initialize start_station, stop_station
+    
+    def initialize (start_station, stop_station)
         @start_station = start_station
         @stop_station = stop_station
         @stations = [start_station, stop_station]
@@ -13,13 +14,13 @@ class Route
         @stations.insert(index, station)
     end
 
-    def get_previous station
+    def get_previous (station)
         i = @stations.index(station)
         return nil if i == 0
         return @stations[i-1]
     end
 
-    def get_next station
+    def get_next (station)
         i = @stations.index(station)
         return nil if i == @stations.count-1
         return @stations[i+1]
@@ -28,7 +29,7 @@ class Route
     def reset_all
         @stations.each do |station|
             station.trains do |train|
-                station.leave train
+                station.leave (train)
             end
         end 
     end

@@ -6,18 +6,18 @@ class Station
     attr_reader :name
     attr_reader :trains
 
-    def initialize name
+    def initialize (name)
         @name = name
         @trains = []
     end
 
-    def receive train
+    def receive (train)
         unless @trains.include?(train)
             @trains << train
         end    
     end
 
-    def trains_by_type type
+    def trains_by_type (type)
         res = []
         @trains.each {|train| res<< train if train.type == type}
         res
