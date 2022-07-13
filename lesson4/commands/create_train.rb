@@ -13,7 +13,7 @@ class CreateTrain < Command
 
     def do_call
         type = ask "Выберите тип\n1 - Грузовой\n2 - Пассажирский\n3 -Выйти", Numeric
-        return if type!=2 && type!=1
+        return CommandResult.new(false, "выход") if type!=2 && type!=1
         number = ask "Введите номер поезда"
        
         if @trains.any?{|t| t.number == number}

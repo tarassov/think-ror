@@ -3,12 +3,15 @@ require_relative 'trains/cargo_train.rb'
 require_relative 'trains/passenger_train.rb'
 require_relative 'commands/create_train.rb'
 require_relative 'commands/create_station.rb'
+require_relative 'commands/create_route.rb'
 require_relative 'station.rb'
+require_relative 'route.rb'
 
 class Application
     def initialize
         @trains = Array.new
         @stations = Array.new
+        @routes = Array.new
     end
 
     def create_station
@@ -20,5 +23,10 @@ class Application
         result = CreateTrain.execute({trains: @trains})
         @trains << result.value  if result.success
     end    
+
+    def create_route
+        result = CreateRoute.execute({stations: @stations, routes: @routes})
+        @routes << result.value  if result.success
+    end
  
 end
