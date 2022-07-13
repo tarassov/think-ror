@@ -1,49 +1,33 @@
-require_relative 'station.rb'
-require_relative 'route.rb'
+require_relative '../station.rb'
+require_relative '../route.rb'
 
 class Train 
     attr_reader :number
     attr_reader :type
-    attr_reader :wagon_count
     attr_reader :speed
 
     attr_reader :route
     attr_reader :current_station    
+    attr_reader :wagons
 
-    def initialize (number, type, wagon_count)
+    def initialize (number)
         @number  = number
-        @wagon_count = wagon_count
         @speed = 0
-        if !Train.train_types.include?(type)
-            raise "Wrong type" 
-        else
-            @type = type
-        end
+        @wagons = Array.new
     end
 
-    def self.train_types
-        [:cargo, :passenger]
-    end
-
-    def accelerate
+  
+    def accelerate!
         @speed +=1
     end 
 
-    def slow_down
+    def slow_down!
         @speed -=1
     end
 
-    def brake
+    def brake!
         @speed = 0
     end 
-
-    def add_wagon
-        @wagon_count +=1 if @speed == 0
-    end
-    
-    def remove_wagon
-        @wagon_count -=1 if @wagon_count >0 && @speed == 0
-    end
 
     def  route= (route)
         #delete from current route and stations
@@ -58,7 +42,10 @@ class Train
     end
 
     def move
-        raise "No route" until @route
+        until @route
+            puts "No route"
+            return
+        end
         next_station = @route.get_next(@current_station)
         if next_station
              @current_station.leave(self)
@@ -76,5 +63,20 @@ class Train
         nil until @route
         @route.get_previous(@current_station)
     end
+
+    def remove_wagon!  type
+        if @wagons.count == 0 
+            puts "No wagons"
+            return
+        end
+        @wagons.pop
+    end
+
+    protected
+    #метод используется в дочерних классах, где идет проверка на типа вагона, напрямую не вызывается
+    def add_wagon! wagon
+        @wagons << wagon
+    end 
+
 
 end

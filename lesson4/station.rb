@@ -1,5 +1,5 @@
 require_relative 'route.rb'
-require_relative 'train.rb'
+require_relative 'trains/train.rb'
 
 
 class Station
