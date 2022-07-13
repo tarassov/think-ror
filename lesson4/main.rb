@@ -11,6 +11,9 @@ loop do
     puts "-----------------"
     menu = ask "Введите номер пункта меню", Numeric
     case menu
+        when 1
+            app.create_station
+
         when 2 
             app.create_train
 
