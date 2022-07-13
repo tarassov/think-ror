@@ -21,14 +21,6 @@ class CreateRoute < Command
    
 
         return CommandResult.new(true, Route.new(@stations[start_index],@stations[stop_index]))
-    end    
+    end   
 
-    private 
-    def choose_station (question, stations)
-        puts question
-        stations.each_with_index do |station, index| 
-            puts "#{index+1} - #{station.name}"
-        end
-        return ask("Введите число", Numeric)-1
-    end
 end

@@ -3,6 +3,9 @@ require_relative 'trains/cargo_train.rb'
 require_relative 'trains/passenger_train.rb'
 require_relative 'commands/create_train.rb'
 require_relative 'commands/create_station.rb'
+require_relative 'commands/create_station.rb'
+require_relative 'commands/add_station.rb'
+require_relative 'commands/delete_station.rb'
 require_relative 'commands/create_route.rb'
 require_relative 'station.rb'
 require_relative 'route.rb'
@@ -28,5 +31,15 @@ class Application
         result = CreateRoute.execute({stations: @stations, routes: @routes})
         @routes << result.value  if result.success
     end
+
+    def add_station
+        result = AddStation.execute({stations: @stations, routes: @routes})
+    end
+
+    def delete_station
+        result = DeleteStation.execute({stations: @stations, routes: @routes})
+    end
+
+
  
 end

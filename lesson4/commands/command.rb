@@ -24,6 +24,22 @@ class Command
     def name 
        "Unknow command"
     end
-    
+
+    def choose_station (question, stations)
+        puts question
+        stations.each_with_index do |station, index| 
+            puts "#{index+1} - #{station.name}"
+        end
+        return ask("Введите число", Numeric)-1
+    end
+
+    def choose_route (question, routes)
+        puts question
+        routes.each_with_index do |route, index| 
+            stations = route.stations.map{|station| station.name}
+            puts "#{index+1} - #{stations}"
+        end
+        return ask("Введите число", Numeric)-1
+    end   
 
 end

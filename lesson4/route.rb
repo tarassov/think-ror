@@ -14,6 +14,11 @@ class Route
         @stations.insert(index, station)
     end
 
+    
+    def remove_station (station)
+        @stations.delete(station)
+    end
+
     def get_previous (station)
         i = @stations.index(station)
         return nil if i == 0
