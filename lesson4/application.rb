@@ -75,6 +75,7 @@ class Application
     end
 
     def select_station
+        puts "Станиций нет" if @stations.count == 0
         @stations.each do |station|
             trains = station.trains.map{|train| train.number}
             puts "Станиция #{station.name}  Номера поездов на станции: #{trains}"
