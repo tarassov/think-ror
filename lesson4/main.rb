@@ -6,7 +6,7 @@ app = Application.new
 
 
 def manage_train (app,train)
-    return unless train.kind_of?(CargoTrain) 
+    return unless train.kind_of?(Train) 
     loop do
         puts "-----------------"
         puts "Выбран поезд #{train}"
@@ -39,7 +39,7 @@ loop do
     puts "4 - добавить станцию"
     puts "5 - удалить станцию"
     puts "6 - выбрать поезд"
-    puts "7 - выбрать станицию"
+    puts "7 - просмотр станиций"
     puts "-----------------"
     menu = ask "Введите номер пункта меню", Numeric
     case menu

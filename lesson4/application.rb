@@ -74,6 +74,13 @@ class Application
         result = MovePrevious.execute({train: train})
     end
 
+    def select_station
+        @stations.each do |station|
+            trains = station.trains.map{|train| train.number}
+            puts "Станиция #{station.name}  Номера поездов на станции: #{trains}"
+        end
+    end
+
 
 
  
