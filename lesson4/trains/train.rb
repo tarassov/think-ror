@@ -64,7 +64,7 @@ class Train
         @route.get_previous(@current_station)
     end
 
-    def remove_wagon!  type
+    def pop_wagon!  
         if @wagons.count == 0 
             puts "No wagons"
             return
@@ -74,7 +74,7 @@ class Train
 
     protected
     #метод используется в дочерних классах, где идет проверка на типа вагона, напрямую не вызывается
-    def add_wagon! wagon
+    def push_wagon! wagon
         @wagons << wagon
     end 
 
