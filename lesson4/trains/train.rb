@@ -41,7 +41,7 @@ class Train
         end    
     end
 
-    def move
+    def move_next
         until @route
             puts "No route"
             return
@@ -54,16 +54,22 @@ class Train
         end
     end
 
-    def next_station
-        nil until @route
-        @route.get_next(@current_station)
+    def move_previous
+        until @route
+            puts "No route"
+            return
+        end
+        prev_station = @route.get_previous(@current_station)
+        if prev_station
+             @current_station.leave(self)
+             prev_station.receive(self)
+             @current_station = prev_station
+        end
     end
 
-    def prev_station
-        nil until @route
-        @route.get_previous(@current_station)
-    end
+  
 
+  
     def pop_wagon!  
         if @wagons.count == 0 
             puts "No wagons"
@@ -77,6 +83,18 @@ class Train
     def push_wagon! wagon
         @wagons << wagon
     end 
+
+    private 
+    #эти методы, который получают инофрмацию о маршруте исопльзуются только внутри базового  класса Train
+    def next_station
+        nil until @route
+        @route.get_next(@current_station)
+    end
+
+    def prev_station
+        nil until @route
+        @route.get_previous(@current_station)
+    end
 
 
 end

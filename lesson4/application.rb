@@ -11,6 +11,8 @@ require_relative 'commands/select_train.rb'
 require_relative 'commands/add_wagon.rb'
 require_relative 'commands/pop_wagon.rb'
 require_relative 'commands/set_route.rb'
+require_relative 'commands/move_next.rb'
+require_relative 'commands/move_previous.rb'
 require_relative 'station.rb'
 require_relative 'route.rb'
 
@@ -63,6 +65,15 @@ class Application
     def pop_wagon(train)
         result = PopWagon.execute({train: train})
     end
+
+    def move_next(train)
+        result = MoveNext.execute({train: train})
+    end
+
+    def move_previous(train)
+        result = MovePrevious.execute({train: train})
+    end
+
 
 
  
