@@ -1,14 +1,18 @@
 require_relative 'route.rb'
 require_relative 'trains/train.rb'
+require_relative 'modules/instance_counter.rb'
 
 
 class Station
     attr_reader :name
     attr_reader :trains
+    include InstanceCounter
+  
 
     def initialize (name)
         @name = name
         @trains = []
+        register_instance
     end
 
     def receive (train)
