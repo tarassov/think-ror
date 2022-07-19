@@ -2,7 +2,7 @@ require_relative 'command.rb'
 require_relative 'command_result.rb'
 class MovePrevious < Command
     
-    def initialize args
+    def initialize (args)
         @routes = args[:routes]
         @train = args[:train]
     end

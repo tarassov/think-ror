@@ -2,7 +2,7 @@ require_relative 'command.rb'
 require_relative 'command_result.rb'
 class SelectTrain < Command
     
-    def initialize args
+    def initialize (args)
         @trains = args[:trains]
     end
 

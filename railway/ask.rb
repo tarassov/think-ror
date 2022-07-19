@@ -1,8 +1,8 @@
-def numeric value
+def numeric (value)
     Float(value) != nil rescue false
 end
 
-def ask question, type =String, negative = false
+def ask (question, type =String, negative = false)
     
     puts question
     res = gets.chomp

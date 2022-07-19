@@ -4,7 +4,7 @@ class Wagon
     attr_reader :number
     include Manufacturer
     include InstanceCounter
-    def initialize number
+    def initialize (number)
         @number = number
         register_instance
     end
