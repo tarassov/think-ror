@@ -34,4 +34,4 @@ require_relative 'station.rb'
 require_relative 'route.rb'
 
 puts "Run app=Seed.run to create demo app"
-puts "Run app=Application to create empty app"
+puts "Run app=Application.new to create empty app"

@@ -25,6 +25,7 @@ class Seed
 
         app.config[:stations] = stations
         app.config[:routes] = routes
+        app.config[:trains] = trains
         return app        
     end
 end
