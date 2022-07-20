@@ -1,8 +1,8 @@
 require_relative 'command.rb'
 require_relative 'command_result.rb'
-class MoveNext < Command
+class MovePrevious < Command
     
-    def initialize args
+    def initialize (args)
         @routes = args[:routes]
         @train = args[:train]
     end
@@ -10,12 +10,12 @@ class MoveNext < Command
     protected
   
     def name  
-        "Движение вперед"
+        "Движение назад"
     end
 
     def do_call
         return CommandResult.new(false,  "Поезд не на маршруте") unless @train.route
-        @train.move_next
+        @train.move_previous
         return CommandResult.new(true,  @train)
     end    
 

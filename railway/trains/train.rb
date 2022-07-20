@@ -1,5 +1,7 @@
 require_relative '../station.rb'
 require_relative '../route.rb'
+require_relative '../modules/manufacturer.rb'
+require_relative '../modules/instance_counter.rb'
 
 class Train 
     attr_reader :number
@@ -10,10 +12,19 @@ class Train
     attr_reader :current_station    
     attr_reader :wagons
 
+    include Manufacturer
+    include InstanceCounter
+
+    
     def initialize (number)
         @number  = number
         @speed = 0
         @wagons = Array.new
+        register_instance
+    end
+
+    def self.find(number)
+        self.all.find{|train| train.number == number}
     end
 
   
