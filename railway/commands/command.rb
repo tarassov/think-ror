@@ -1,18 +1,25 @@
 require_relative 'command_result.rb'
+require_relative '../modules/logger.rb'
 
 class Command
+    include Logger
 
     def self.execute (*args)
         new(*args).call
     end
 
     def call
-        puts "-----------------"
-        puts "Вызов команды: " +  name
-        result  = do_call
-        puts "Результат выполнения":  result.value if result.success
-        puts "Ошибка":  result.value unless result.success
-        puts "-----------------"
+        log("Вызов команды: " +  name)
+        begin
+            result  = do_call
+        rescue RuntimeError => e
+            log("Ошибка: #{e.message}")
+            retry if ask("Wanna try again? [yes/no]")=="yes"
+            return CommandResult.new(false, e.message)
+        end    
+        log("Результат выполнения: #{result.value}") if result.success
+        log("Ошибка: #{result.value}") unless result.success
+
         return result
     end
 

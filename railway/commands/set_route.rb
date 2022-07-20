@@ -14,7 +14,7 @@ class SetRoute < Command
     end
 
     def do_call
-        return CommandResult.new(false, "Нет маршрутов для выбора")  if @routes.count == 0
+        raise("Нет маршрутов для выбора")  if @routes.nil? || @routes.count == 0
 
         index = choose_route("Выберите маршрут", @routes)
 

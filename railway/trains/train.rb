@@ -15,12 +15,21 @@ class Train
     include Manufacturer
     include InstanceCounter
 
+    NUMBER_FORMAT = /^^[a-zA-Z0-9]{3}-{0,1}[a-zA-Z0-9]{2}$$/i
     
     def initialize (number)
         @number  = number
         @speed = 0
-        @wagons = Array.new
+        @wagons = Array.new        
+        validate!
         register_instance
+    end
+    
+    def valid?
+        validate!
+        true
+    rescue
+        false
     end
 
     def self.find(number)
@@ -54,8 +63,7 @@ class Train
 
     def move_next
         until @route
-            puts "No route"
-            return
+            raise "No route"
         end
         next_station = @route.get_next(@current_station)
         if next_station
@@ -67,8 +75,7 @@ class Train
 
     def move_previous
         until @route
-            puts "No route"
-            return
+            raise "No route"
         end
         prev_station = @route.get_previous(@current_station)
         if prev_station
@@ -83,8 +90,7 @@ class Train
   
     def pop_wagon!  
         if @wagons.count == 0 
-            puts "No wagons"
-            return
+            raise "No wagons"
         end
         @wagons.pop
     end
@@ -106,6 +112,11 @@ class Train
         nil until @route
         @route.get_previous(@current_station)
     end
-
+    
+    def validate!        
+        raise "Number should be at least 5 symbols" if number.length < 5
+        raise "Number should be 6 or 5 symbols" if number.length > 6
+        raise "Number has invalid format" if number !~ NUMBER_FORMAT
+    end
 
 end

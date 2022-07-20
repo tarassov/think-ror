@@ -11,7 +11,7 @@ class CreateTrain < Command
        "Создание поезда"
     end
 
-    def do_call
+    def do_call        
         type = ask "Выберите тип\n1 - Грузовой\n2 - Пассажирский\n3 -Выйти", Numeric
         return CommandResult.new(false, "выход") if type!=2 && type!=1
         number = ask "Введите номер поезда"

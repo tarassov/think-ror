@@ -57,7 +57,7 @@ class Application
     end
 
     def set_route(train)
-        result = SetRoute.execute({train: train, routes: @routes})
+        result = SetRoute.execute({train: train, routes: @config[:routes]})
     end
 
     def add_wagon(train)

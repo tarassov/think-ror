@@ -14,7 +14,7 @@ class MovePrevious < Command
     end
 
     def do_call
-        return CommandResult.new(false,  "Поезд не на маршруте") unless @train.route
+        raise("Поезд не на маршруте") unless @train.route
         @train.move_previous
         return CommandResult.new(true,  @train)
     end    

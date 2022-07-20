@@ -16,7 +16,7 @@ class CreateStation < Command
         name = ask "Введите название станции"
        
         if  @stations.any?{|t| t.name == name}
-            return CommandResult.new(false, "Название уже занято")
+            raise("Название уже занято")
         else
             station = Station.new(name)  
             return CommandResult.new(true, station)

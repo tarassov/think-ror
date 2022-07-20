@@ -15,8 +15,8 @@ class AddWagon < Command
 
     def do_call
         number  = ask("Введите номер вагона")
-        @train.new_wagon!(number)
-        return CommandResult.new(true,  @train)
+        wagon = @train.new_wagon!(number)
+        return CommandResult.new(true,  wagon)
     end    
 
 

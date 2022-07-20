@@ -10,8 +10,17 @@ class Route
         @start_station = start_station
         @stop_station = stop_station
         @stations = [start_station, stop_station]
+        validate!
         register_instance
     end
+
+    def valid?
+        validate!
+        true
+    rescue
+        false
+    end
+
     
     def add_station (station, index = -2)
         @stations.insert(index, station)
@@ -41,5 +50,12 @@ class Route
             end
         end 
     end
+        
+    protected
+    def validate!
+        raise "Start station should be Station class object" if !@start_station.kind_of?(Station)
+        raise "Stop station name can't be nil" if !@stop_station.kind_of?(Station)
+    end
+        
 
 end

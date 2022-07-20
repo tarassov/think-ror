@@ -12,8 +12,17 @@ class Station
     def initialize (name)
         @name = name
         @trains = []
+        validate!
         register_instance
     end
+
+    def valid?
+        validate!
+        true
+    rescue
+        false
+    end
+
 
     def receive (train)
         unless @trains.include?(train)
@@ -30,6 +39,9 @@ class Station
     def leave train 
         @trains.delete(train)
     end
-
+    protected
+    def validate!
+        raise "Name should be at least 3 symbols" if name.length < 3
+    end
     
 end
