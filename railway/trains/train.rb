@@ -17,7 +17,7 @@ class Train
     include InstanceCounter
     include Validation
 
-    NUMBER_FORMAT = /^^[a-zA-Z0-9]{3}-{0,1}[a-zA-Z0-9]{2}$$/i
+    NUMBER_FORMAT = /^[a-zA-Z0-9]{3}-{0,1}[a-zA-Z0-9]{2}$/i
     
     def initialize (number)
         @number  = number
