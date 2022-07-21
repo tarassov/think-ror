@@ -1,10 +1,12 @@
 require_relative 'station.rb'
 require_relative 'trains/train.rb'
 require_relative 'modules/instance_counter.rb'
+require_relative 'modules/validation.rb'
 
 class Route
     attr_reader :stations
     include InstanceCounter
+    include Validation
 
     def initialize (start_station, stop_station)
         @start_station = start_station
@@ -14,12 +16,6 @@ class Route
         register_instance
     end
 
-    def valid?
-        validate!
-        true
-    rescue
-        false
-    end
 
     
     def add_station (station, index = -2)
@@ -53,8 +49,10 @@ class Route
         
     protected
     def validate!
-        raise "Start station should be Station class object" if !@start_station.kind_of?(Station)
-        raise "Stop station name can't be nil" if !@stop_station.kind_of?(Station)
+        errors = []  
+        errors << "Start station should be Station class object" if !@start_station.kind_of?(Station)
+        errors << "Stop station name can't be nil" if !@stop_station.kind_of?(Station)
+        raise errors.join('.') unless errors.empty?
     end
         
 

@@ -1,13 +1,13 @@
 require_relative 'route.rb'
 require_relative 'trains/train.rb'
 require_relative 'modules/instance_counter.rb'
-
+require_relative 'modules/validation.rb'
 
 class Station
     attr_reader :name
     attr_reader :trains
     include InstanceCounter
-  
+    include Validation
 
     def initialize (name)
         @name = name
@@ -15,14 +15,6 @@ class Station
         validate!
         register_instance
     end
-
-    def valid?
-        validate!
-        true
-    rescue
-        false
-    end
-
 
     def receive (train)
         unless @trains.include?(train)

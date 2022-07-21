@@ -2,6 +2,7 @@ require_relative '../station.rb'
 require_relative '../route.rb'
 require_relative '../modules/manufacturer.rb'
 require_relative '../modules/instance_counter.rb'
+require_relative '../modules/validation.rb'
 
 class Train 
     attr_reader :number
@@ -14,6 +15,7 @@ class Train
 
     include Manufacturer
     include InstanceCounter
+    include Validation
 
     NUMBER_FORMAT = /^^[a-zA-Z0-9]{3}-{0,1}[a-zA-Z0-9]{2}$$/i
     
@@ -24,13 +26,7 @@ class Train
         validate!
         register_instance
     end
-    
-    def valid?
-        validate!
-        true
-    rescue
-        false
-    end
+
 
     def self.find(number)
         self.all.find{|train| train.number == number}
@@ -113,10 +109,12 @@ class Train
         @route.get_previous(@current_station)
     end
     
-    def validate!        
-        raise "Number should be at least 5 symbols" if number.length < 5
-        raise "Number should be 6 or 5 symbols" if number.length > 6
-        raise "Number has invalid format" if number !~ NUMBER_FORMAT
+    def validate!     
+        errors = []   
+        errors << "Number should be at least 5 symbols" if number.length < 5
+        errors << "Number should be 6 or 5 symbols" if number.length > 6
+        errors << "Number has invalid format" if number !~ NUMBER_FORMAT
+        raise errors.join('.') unless errors.empty?
     end
 
 end
