@@ -13,7 +13,7 @@ class SelectTrain < Command
     end
 
     def do_call
-        return CommandResult.new(false, "Нет поездов для выбора")  if @trains.count == 0
+        raise("Нет поездов для выбора")  if @trains.count == 0
 
         puts "Выберите поезд"
         @trains.each_with_index do |train, index| 

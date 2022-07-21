@@ -14,8 +14,8 @@ class DeleteStation < Command
     end
 
     def do_call
-        return CommandResult.new(false, "Не создано ни одной станции")  if @stations.count == 0
-        return CommandResult.new(false, "Не создано ни одного маршрута")  if @routes.count == 0
+        raise "Не создано ни одной станции"  if @stations.count == 0
+        raise "Не создано ни одного маршрута"  if @routes.count == 0
 
         route_index = choose_route("Выберите маршрут", @routes)
         station_index = choose_station("Выберите станцию ",  @routes[route_index].stations)

@@ -1,17 +1,18 @@
 require_relative 'route.rb'
 require_relative 'trains/train.rb'
 require_relative 'modules/instance_counter.rb'
-
+require_relative 'modules/validation.rb'
 
 class Station
     attr_reader :name
     attr_reader :trains
     include InstanceCounter
-  
+    include Validation
 
     def initialize (name)
         @name = name
         @trains = []
+        validate!
         register_instance
     end
 
@@ -30,6 +31,9 @@ class Station
     def leave train 
         @trains.delete(train)
     end
-
+    protected
+    def validate!
+        raise "Name should be at least 3 symbols" if name.length < 3
+    end
     
 end

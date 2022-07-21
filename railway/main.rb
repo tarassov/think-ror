@@ -5,6 +5,8 @@ require_relative 'seed.rb'
 
 require_relative 'modules/instance_counter.rb'
 require_relative 'modules/manufacturer.rb'
+require_relative 'modules/logger.rb'
+require_relative 'modules/validation.rb'
 
 require_relative "station.rb"
 require_relative "route.rb"
