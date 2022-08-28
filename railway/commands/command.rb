@@ -17,7 +17,7 @@ class Command
             retry if ask("Wanna try again? [yes/no]")=="yes"
             return CommandResult.new(false, e.message)
         end    
-        log("Результат выполнения: #{result.value}") if result.success
+        log("Результат выполнения: #{result.value}") if result.success && result.value
         log("Ошибка: #{result.value}") unless result.success
 
         return result

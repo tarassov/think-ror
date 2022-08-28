@@ -91,6 +91,11 @@ class Train
         @wagons.pop
     end
 
+
+    def each_wagon
+        @wagons.each {|w| yield w}
+    end
+
     protected
     #метод используется в дочерних классах, где идет проверка на типа вагона, напрямую не вызывается
     def push_wagon! wagon

@@ -19,6 +19,7 @@ class SelectTrain < Command
         @trains.each_with_index do |train, index| 
             puts "#{index+1} - Поезд номер:#{train.number} - #{train} "
         end
+        
         index = ask("Введите число", Numeric)-1
         
         return CommandResult.new(true,  @trains[index])

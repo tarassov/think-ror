@@ -15,7 +15,13 @@ class AddWagon < Command
 
     def do_call
         number  = ask("Введите номер вагона")
-        wagon = @train.new_wagon!(number)
+        if @train.instance_of? CargoTrain
+            max_volume  = ask("Введите общий объем")
+            wagon = @train.new_wagon!(number,max_volume)
+        else
+            max_seats_number  = ask("Введите общее количество мест")
+            wagon = @train.new_wagon!(number,max_seats_number)
+        end
         return CommandResult.new(true,  wagon)
     end    
 
