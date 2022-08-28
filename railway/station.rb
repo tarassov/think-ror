@@ -31,6 +31,11 @@ class Station
     def leave train 
         @trains.delete(train)
     end
+
+    def each_train 
+        @trains.each {|train| yield train}
+    end
+    
     protected
     def validate!
         raise "Name should be at least 3 symbols" if name.length < 3

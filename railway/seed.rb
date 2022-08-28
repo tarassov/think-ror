@@ -16,9 +16,9 @@ class Seed
 
         trains =[CargoTrain.new("111-11"),CargoTrain.new("222-22"), PassnegerTrain.new("33s-as"),PassnegerTrain.new("4d3-sd")]
         
-        trains[0].new_wagon!(CargoWagon.new("Wagon1"))
-        trains[0].new_wagon!(CargoWagon.new("Wagon2"))
-        trains[3].new_wagon!(PassengerWagon.new("Wagon3"))
+        trains[0].new_wagon!("Wagon1",10)
+        trains[0].new_wagon!("Wagon2",5)
+        trains[3].new_wagon!("Wagon3",100)
 
         trains[0].route= routes[0]
         trains[3].route= routes[1]
